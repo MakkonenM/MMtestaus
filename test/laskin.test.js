@@ -1,10 +1,8 @@
 import { describe, expect, it } from 'vitest';
-
-const Laskin = require('../laskin/laskin');
+// Muutetaan require -> import, jotta se on yhtenäinen muiden testien kanssa
+import laskin from '../laskin/laskin';
 
 describe('Laskimen testaus', function () {
-  const laskin = Laskin;
-
   it('Tarkistetaan, että plusLasku-funktio palauttaa oikean summan yhteenlaskulla 1 + 1', function () {
     const checkSumma = laskin.plusLasku(1, 1);
     expect(checkSumma).toBe(2);
