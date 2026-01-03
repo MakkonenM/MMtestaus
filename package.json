@@ -4,9 +4,9 @@
   "description": "A minimal full-stack JavaScript Todo application intended for learning unit testing with Vitest and end-to-end testing with Cypress (added later). This version has no database; tasks are stored in the browser's localStorage.",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "http-server public -p 5173",
     "dev": "node server.js",
-    "test": "vitest run"
+    "test": "cypress run"
   },
   "keywords": [],
   "author": "",
