@@ -1,7 +1,5 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 
-const localStorage = 'todo_tasks_v1';
-
 // Simuloidaan localStorage ennen testejä
 const localStorageMock = (() => {
   let store = {};
