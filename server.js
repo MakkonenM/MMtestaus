@@ -16,11 +16,11 @@ app.use(express.json());
 
 // Health and meta endpoints - handy for E2E harnesses later
 app.get('/health', (req, res) => {
-	res.json({ status: 'ok' });
+  res.json({ status: 'ok' });
 });
 
 app.get('/version', (req, res) => {
-	res.json({ name: 'todo-training-app', version: '0.1.0' });
+  res.json({ name: 'todo-training-app', version: '0.1.0' });
 });
 
 // Serve static frontend
@@ -29,12 +29,10 @@ app.use(express.static(publicDir, { extensions: ['html'] }));
 
 // Fallback to index.html for root
 app.get('/', (req, res) => {
-	res.sendFile(path.join(publicDir, 'index.html'));
+  res.sendFile(path.join(publicDir, 'index.html'));
 });
 
 app.listen(PORT, () => {
-	// eslint-disable-next-line no-console
-	console.log(`Server listening on http://localhost:${PORT}`);
+  // eslint-disable-next-line no-console
+  console.log(`Server listening on http://localhost:${PORT}`);
 });
-
-
