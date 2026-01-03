@@ -77,10 +77,13 @@
 
   // State
   let tasks = loadTasks();
+  let currentFilter = 'all'; // 'all' | 'high' | 'medium' | 'low'
 
   // Render
   function render() {
     list.innerHTML = '';
+
+    // Jos yhtään taskia ei ole olemassa, näytetään "tyhjä"-teksti
     if (!tasks.length) {
       emptyState.style.display = 'block';
       return;
@@ -88,6 +91,12 @@
     emptyState.style.display = 'none';
 
     tasks
+      // 1. SUODATUS (FILTER)
+      .filter((t) => {
+        if (currentFilter === 'all') return true;
+        return t.priority === currentFilter;
+      })
+      // 2. JÄRJESTYS (SORT)
       .sort((a, b) => {
         // Not-done first, then by priority (high->low), then newest first
         if (a.completed !== b.completed) return a.completed ? 1 : -1;
@@ -247,6 +256,39 @@
       render();
     }
   });
+
+  //suodatusnappien event listeners
+  const filterAll = document.getElementById('filter-all');
+  if (filterAll) {
+    filterAll.addEventListener('click', () => {
+      currentFilter = 'all';
+      render();
+    });
+  }
+
+  const filterHigh = document.getElementById('filter-high');
+  if (filterHigh) {
+    filterHigh.addEventListener('click', () => {
+      currentFilter = 'high';
+      render();
+    });
+  }
+
+  const filterMedium = document.getElementById('filter-medium');
+  if (filterMedium) {
+    filterMedium.addEventListener('click', () => {
+      currentFilter = 'medium';
+      render();
+    });
+  }
+
+  const filterLow = document.getElementById('filter-low');
+  if (filterLow) {
+    filterLow.addEventListener('click', () => {
+      currentFilter = 'low';
+      render();
+    });
+  }
 
   // Initial paint
   render();
